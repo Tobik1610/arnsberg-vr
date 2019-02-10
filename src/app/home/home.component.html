@@ -1,0 +1,12 @@
+<div class="page-header">
+  <h1>Sehenswürdigkeiten</h1>
+</div>
+<div class="grid grid-pad">
+  <a *ngFor="let sight of sights" class="col-md-4" routerLink="/sight/{{sight.id}}">
+    <div class="module sight">
+      <h4>{{sight.name}}</h4>
+    </div>
+  </a>
+</div>
+
+  <!-- <app-sight [sight]="sight" [id]="sight.id"></app-sight> -->
