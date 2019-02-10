@@ -4,4 +4,5 @@ export class Sight{
   descr: string;
   thumbnail: string;
   vrfile: string;
+  mapsLink: string;
 }
