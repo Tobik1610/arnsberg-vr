@@ -1,10 +1,31 @@
-<h3>{{sight.name}}</h3>
-{{sight.descr}}
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{sight.name}}</h5>
+    <p class="card-text">{{sight.descr}}</p>
+  </div>
+  <div class="card-body">
+    <a-scene ng-attr-id="{{sight.id}}" class="aframebox parent" embedded>
+      <input #playBtn type="image" id="play-button" src="../../assets/btn/{{btnImage}}.png" (click)="onVideoClick()">
+      <!-- <button id="play-button" class="child" (click)="onVideoClick()"></button> -->
+      <!-- The original example also has this 180 degree rotation, to appear to be going forward. -->
+      <a-videosphere rotation="0 180 0" src="#video"
+                     play-on-window-click
+                     play-on-vrdisplayactivate-or-enter-vr (click)="onVideoClick()">
+      </a-videosphere>
 
-  <a-scene ng-attr-id="{{sight.id}}" class="aframebox" embedded>
-    <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-    <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
-    <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-    <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-    <a-sky color="#ECECEC"></a-sky>
-  </a-scene>
+      <!-- Wait for the video to load. -->
+      <a-assets>
+        <!-- Single source video. -->
+        <video #video id="video" style="display:none"
+               crossorigin="anonymous" playsinline webkit-playsinline>
+          <!-- MP4 video source. -->
+          <source type="video/mp4"
+               src="{{sight.vrfile}}" />
+        </video>
+      </a-assets>
+    </a-scene>
+  </div>
+  <div class="card-body">
+    <a href="{{sight.mapsLink}}" class="card-link" target="_blank">Google Maps</a>
+  </div>
+</div>
