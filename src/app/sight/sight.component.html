@@ -4,26 +4,25 @@
     <p class="card-text">{{sight.descr}}</p>
   </div>
   <div class="card-body">
-    <a-scene ng-attr-id="{{sight.id}}" class="aframebox" embedded>
+    <a-scene ng-attr-id="{{sight.id}}" class="aframebox parent" embedded>
+      <input #playBtn type="image" id="play-button" src="../../assets/btn/{{btnImage}}.png" (click)="onVideoClick()">
+      <!-- <button id="play-button" class="child" (click)="onVideoClick()"></button> -->
       <!-- The original example also has this 180 degree rotation, to appear to be going forward. -->
       <a-videosphere rotation="0 180 0" src="#video"
                      play-on-window-click
-                     play-on-vrdisplayactivate-or-enter-vr>
+                     play-on-vrdisplayactivate-or-enter-vr (click)="onVideoClick()">
       </a-videosphere>
 
       <!-- Wait for the video to load. -->
       <a-assets>
         <!-- Single source video. -->
-        <video id="video" style="display:none"
-               autoplay loop crossorigin="anonymous" playsinline webkit-playsinline>
+        <video #video id="video" style="display:none"
+               crossorigin="anonymous" playsinline webkit-playsinline>
           <!-- MP4 video source. -->
           <source type="video/mp4"
                src="{{sight.vrfile}}" />
         </video>
       </a-assets>
-      <!-- <a-assets>
-        <video autoplay loop="true" src="{{sight.vrfile}}" crossorigin="anonymous"></video>
-      </a-assets> -->
     </a-scene>
   </div>
   <div class="card-body">
